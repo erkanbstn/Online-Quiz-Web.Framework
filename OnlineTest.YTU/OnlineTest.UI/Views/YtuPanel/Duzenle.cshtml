@@ -1,0 +1,31 @@
+﻿@using OnlineTest.Models
+@model OnlineTest.UI.Models.ViewModels.UnitTest
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/_YtuPanelLayout.cshtml";
+}
+
+<h2> Öğrenci Düzenle</h2>
+<br />
+<form method="post">
+    @Html.HiddenFor(u => u.User.Id)
+    Öğrenci Email :
+    <hr />
+    @Html.TextBoxFor(u => u.User.UserName, new { @class = "form-control" })
+    <br />
+    <br />
+    Öğrenci Parola :
+    <hr />
+    @Html.TextBoxFor(u => u.User.Password, new { @class = "form-control" })
+    <br />
+    Test Durumu
+    <hr />
+    Tamamladı
+    @Html.RadioButtonFor(u => u.User.Status, true)
+    <br />
+    Tamamlamadı
+    @Html.RadioButtonFor(u => u.User.Status, false)
+    <br />
+    <br />
+    <input value="Değişiklikleri Kaydet" type="submit" class="btn btn-success" />
+</form>

@@ -1,0 +1,20 @@
+﻿@using OnlineTest.Models
+@model OnlineTest.UI.Models.ViewModels.UnitTest
+@{
+    ViewBag.Title = "YeniOgrenci";
+    Layout = "~/Views/Shared/_YtuPanelLayout.cshtml";
+}
+
+<h2>Yeni Öğrenci Ekle</h2>
+<br />
+<form method="post">
+    Öğrenci Email :
+    @Html.TextBoxFor(u => u.User.UserName, new { @class = "form-control" })
+    <br />
+    <br />
+    Öğrenci Parola : 
+    @Html.TextBoxFor(u => u.User.Password, new { @class = "form-control" })
+    <br />
+    <input value="Değişiklikleri Kaydet" type="submit" class="btn btn-success"/>
+</form>
+

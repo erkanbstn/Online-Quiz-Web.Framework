@@ -1,0 +1,45 @@
+﻿@using OnlineTest.Models
+@model OnlineTest.UI.Models.ViewModels.UnitTest
+@{
+    ViewBag.Title = "GetTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+@if (ViewBag.welcome != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.welcome
+    </div>
+}
+<form method="post">
+
+    @foreach (var ask in Model.Asks)
+    {
+        <input name="askid" value="@ask.Id" type="hidden" />
+        <span> <img src="~/AllAsks/@ask.Content" width="500" /></span>
+        <hr />
+        <br />
+        <span>Cevabınız:</span>
+        <input maxlength="1" class="harfInput form-control" name="AnswerContent" />
+        <br />
+        <input type="submit" class="btn btn-primary" value="İleri" />
+        <br />
+        <br />
+        <span>Soruya Sadece 1 Kez Yanıt Verebilirsiniz. Lütfen Yanıtınızı Emin Olduğunuzda Gönderin.</span>
+        if (ViewBag.askincomplete != null)
+        {
+            <br />
+            <br />
+            <div class="alert alert-danger">
+                @ViewBag.askincomplete
+            </div>
+        }
+    }
+</form>
+<script>
+    $(".harfInput").keyup(function () {
+        if (this.value.match(/[^a-zA-Z]/g)) {
+            this.value = this.value.replace(/[^a-zA-Z]/g, '');
+        }
+</script>

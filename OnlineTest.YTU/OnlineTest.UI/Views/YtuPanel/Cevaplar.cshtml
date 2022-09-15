@@ -1,0 +1,65 @@
+﻿@using OnlineTest.Models
+@model OnlineTest.UI.Models.ViewModels.UnitTest
+@{
+    ViewBag.Title = "Cevaplar";
+    Layout = "~/Views/Shared/_YtuPanelLayout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12 grid-margin ">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-title mb-0">
+                    Cevaplar - @ViewBag.kisi
+                    <br />
+                    <br />
+                    @if (ViewBag.dogru)
+                    {
+                        <div class="badge badge-success">Doğru Sayısı Daha Fazla</div>
+                    }
+                    else
+                    {
+                        <div class="badge badge-danger">Yanlış Sayısı Daha Fazla</div>
+                    }
+
+                    Toplam Doğru : @ViewBag.toplamdogru
+                    Toplam Yanlış : @ViewBag.toplamyanlis
+                </p>
+                <br />
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Soru</th>
+                                <th>Cevap</th>
+                                <th>Doğru Cevap</th>
+                                <th>Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var u in Model.Answers)
+                            {
+                                <tr>
+                                    <td>@u.Id</td>
+                                    <td>@u.Ask.Id</td>
+                                    <td>@u.Content</td>
+                                    <td>@u.Ask.Correct</td>
+                                    @if (u.Content == u.Ask.Correct)
+                                    {
+                                        <td class="font-weight-medium"><div class="badge badge-success">Doğru</div></td>
+                                    }
+                                    else
+                                    {
+                                        <td class="font-weight-medium"><div class="badge badge-warning">Yanlış</div></td>
+                                    }
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

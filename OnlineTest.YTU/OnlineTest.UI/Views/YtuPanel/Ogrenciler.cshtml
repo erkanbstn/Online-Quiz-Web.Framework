@@ -1,0 +1,65 @@
+﻿@using OnlineTest.Models
+@model OnlineTest.UI.Models.ViewModels.UnitTest
+@{
+    ViewBag.Title = "Ogrenciler";
+    Layout = "~/Views/Shared/_YtuPanelLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin ">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-title mb-0">Tüm Öğrenciler</p>
+                <br />
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Kullanıcı</th>
+                                <th>Parola</th>
+                                <th>Durum</th>
+                                <th>İncele</th>
+                                <th>Sil</th>
+                                <th>Düzenle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var u in Model.Users)
+                            {
+                                <tr>
+                                    <td>@u.Id</td>
+                                    <td>@u.UserName</td>
+                                    <td>@u.Password</td>
+                                    @if (u.Status)
+                                    {
+                                        <td class="font-weight-medium"><div class="badge badge-success">Tamamladı</div></td>
+                                    }
+                                    else
+                                    {
+                                        <td class="font-weight-medium"><div class="badge badge-warning">Tamamlamadı</div></td>
+                                    }
+                                    <td>
+                                        <a href="~/YtuPanel/Cevaplar/@u.Id" class="badge badge-primary">Cevapları İncele</a>
+                                    </td>
+                                    <td>
+                                        <a href="~/YtuPanel/Sil/@u.Id" class="badge badge-danger">Sil</a>
+                                    </td>
+                                    <td>
+                                        <a href="~/YtuPanel/Duzenle/@u.Id" class="badge badge-info">Bilgi Düzenle</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <br />
+                    <br />
+                    <div class="alert alert-danger">
+                        Öğrencileri Silmeniz Sistemler Sorunlar Yaratabileceğinden Ötürü Daha Önce Teste Girmemiş Kişileri Silebilirsiniz.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
